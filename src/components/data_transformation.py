@@ -22,7 +22,7 @@ from src.utils import save_object
 # (transformador de datos) utilizado en el proceso de Machine Learning.
 
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts',"proprocessor.pkl")
+    preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 class DataTransformation:
 
@@ -141,7 +141,7 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e,sys)
         
-        # El archivo "proprocessor.pkl" contiene el objeto del preprocesador 
+        # El archivo "preprocessor.pkl" contiene el objeto del preprocesador 
         # que ha sido configurado y ajustado con los datos de entrenamiento, 
         # y su función es aplicar transformaciones específicas para preparar 
         # los datos para su uso en un modelo de Machine Learning.
