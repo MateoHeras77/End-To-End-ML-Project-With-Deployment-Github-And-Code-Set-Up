@@ -14,13 +14,27 @@ import os
 
 from src.utils import save_object
 
+
 @dataclass
+
+# Aquí se define una clase DataTransformationConfig con un atributo preprocessor_obj_file_path, 
+# que se utiliza para almacenar la ruta del archivo donde se guardará el objeto del preprocesador 
+# (transformador de datos) utilizado en el proceso de Machine Learning.
+
 class DataTransformationConfig:
     preprocessor_obj_file_path=os.path.join('artifacts',"proprocessor.pkl")
 
 class DataTransformation:
+
+    # Se define una clase DataTransformation, que tiene un método __init__ (constructor) que inicializa un objeto 
+    # data_transformation_config de la clase DataTransformationConfig. Esto permitirá acceder a la ruta del archivo 
+    # del preprocesador para guardar o cargar objetos de preprocesamiento.
+
     def __init__(self):
         self.data_transformation_config=DataTransformationConfig()
+
+    # Esta función get_data_transformer_object es responsable de crear y configurar el preprocesador (transformador de datos). 
+    # Realiza el procesamiento para las columnas numéricas y categóricas, imputando valores faltantes y escalando los datos.
 
     def get_data_transformer_object(self):
         '''
@@ -75,6 +89,9 @@ class DataTransformation:
         
         
     def initiate_data_transformation(self,train_path,test_path):
+        # La función initiate_data_transformation toma las rutas de los archivos de entrenamiento y prueba, 
+        # lee los datos en DataFrames y aplica el preprocesador previamente configurado para transformar 
+        # los datos en matrices de características listas para el entrenamiento y prueba de modelos de Machine Learning.
 
         try:
             train_df=pd.read_csv(train_path)
@@ -123,3 +140,10 @@ class DataTransformation:
             )
         except Exception as e:
             raise CustomException(e,sys)
+        
+        # El archivo "proprocessor.pkl" contiene el objeto del preprocesador 
+        # que ha sido configurado y ajustado con los datos de entrenamiento, 
+        # y su función es aplicar transformaciones específicas para preparar 
+        # los datos para su uso en un modelo de Machine Learning.
+        # No es el modelo final en sí mismo, sino una herramienta para preparar 
+        # los datos antes de entrenar el modelo.
